@@ -1,0 +1,79 @@
+query 1°
+
+
+select s.id,s.name as Nome, s.surname as Congome, d.id, d.name as Dipartimento
+from students s 
+inner join degrees d 
+on s.degree_id = d.id 
+where d.name = 'Corso di Laurea in Economia'
+
+query 2°
+
+select d.id,d.name,d2.id,d2.name 
+from degrees d 
+inner join departments d2 
+on d.department_id = department_id
+where d2.name =  'Dipartimento di Neuroscienze' 
+and d.name like '%Magistrale%';
+
+query 3°
+
+select c.name as Nome_Corso, c.degree_id as ID_Laurea ,
+ct.course_id as ID_Corso ,
+ct.teacher_id as ID_Insegnante,
+t.name as Nome_Insegnante,
+t.surname as Cognome_Insegnante 
+from courses c 
+inner join course_teacher ct 
+on c.id = ct.course_id 
+inner join teachers t
+on t.id = ct.teacher_id 
+where ct.teacher_id = "44";
+
+query 4°
+
+select s.name , s.surname, 
+d2.name, d2.address , 
+d.name, d.address ,d.`level` 
+from students s 
+inner join degrees d 
+on d.id = s.degree_id 
+inner join departments d2 
+on d2.id = d.department_id ;
+order by
+s.name = ASC
+s.surname = ASC
+
+query 5°
+
+select c.degree_id as ID_Corso , c.name as Nome ,
+t.name as Nome_Insegnante , t.surname as Cognome_Insegnante , 
+ct.teacher_id as ID_Insegnante , ct.course_id as ID_Corso_Insengante ,
+d.name as Nome_Corso_Laurea, d.`level` as Livello_Corso_Laurea 
+from courses c 
+join degrees d 
+on d.id = c.degree_id 
+inner join course_teacher ct 
+on c.id = ct.course_id 
+inner join teachers t 
+on t.id = ct.teacher_id 
+
+query 6°
+
+select t.name as Nome_Insegnante, t.surname as Cognome_Insegnante, 
+ct.teacher_id as ID_Insegnante,
+d2.name as Dipartimento
+from teachers t 
+join course_teacher ct 
+on t.id = ct.teacher_id 
+join courses c 
+on c.id = ct.course_id 
+join degrees d
+on d.id = c.degree_id  
+join departments d2 
+on d2.id = d.department_id 
+where d2.name = 'Dipartimento di Matematica';
+
+
+
+
